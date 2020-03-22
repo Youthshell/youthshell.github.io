@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-req = requests.get('https://maple.gg/u/apteryxchan')
+req = requests.get('https://maple.gg/u/%EA%BB%8D%EC%A7%88%EB%AA%AC%EA%B4%91%EC%8B%A0%EB%8F%84')
 html = req.text
 soup = BeautifulSoup(html, 'html.parser')
 basic_info = soup.select('.user-summary-item')
@@ -15,7 +15,7 @@ rank_job = str(ranking[4]).replace('<div class="col-lg-2 col-md-4 col-sm-4 col-6
 union_tier = str(soup.select('.user-summary-tier-string')[0]).replace('<div class="user-summary-tier-string font-weight-bold">','').replace('</div>','')
 union_level = str(soup.select('.user-summary-level')[0]).replace('<span class="user-summary-level">Lv.','').replace('</span>','')
 
-datajs = open('/data/web/apteryx.moe/maple/data.js', 'w', encoding='utf8')
+datajs = open('./data.js', 'w', encoding='utf8')
 data_str = 'var data = {\n\tlevel : "' + level + '",\n\tpopular : "' + popular + '",\n\tmureung_floor : "' + mureung_floor + '",\n\tmureung_time : "' + mureung_time + '",\n\trank_world : "' + rank_world + '",\n\trank_world_job : "' + rank_world_job + '",\n\trank_job : "' + rank_job + '",\n\tunion_tier : "' + union_tier + '",\n\tunion_level : "' + union_level + '"\n};'
 datajs.write(data_str)
 datajs.close()
